@@ -258,7 +258,7 @@ namespace MongoDB.Driver.GridFS
         }
 
         /// <inheritdoc />
-        public IAsyncCursor<GridFSFileInfo<TFileId>> Find(FilterDefinition<GridFSFileInfo<TFileId>> filter, GridFSFindOptions<TFileId> options = null, CancellationToken cancellationToken = default(CancellationToken))
+        public IAsyncCursor<GridFSFileInfo<TFileId>> Find(IFilterDefinition<GridFSFileInfo<TFileId>> filter, GridFSFindOptions<TFileId> options = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             Ensure.IsNotNull(filter, nameof(filter));
             options = options ?? new GridFSFindOptions<TFileId>();
@@ -271,7 +271,7 @@ namespace MongoDB.Driver.GridFS
         }
 
         /// <inheritdoc />
-        public async Task<IAsyncCursor<GridFSFileInfo<TFileId>>> FindAsync(FilterDefinition<GridFSFileInfo<TFileId>> filter, GridFSFindOptions<TFileId> options = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IAsyncCursor<GridFSFileInfo<TFileId>>> FindAsync(IFilterDefinition<GridFSFileInfo<TFileId>> filter, GridFSFindOptions<TFileId> options = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             Ensure.IsNotNull(filter, nameof(filter));
             options = options ?? new GridFSFindOptions<TFileId>();
@@ -577,7 +577,9 @@ namespace MongoDB.Driver.GridFS
                 this.GetMessageEncoderSettings());
         }
 
-        private GridFSDownloadStream<TFileId> CreateDownloadStream(IReadBindingHandle binding, GridFSFileInfo<TFileId> fileInfo, GridFSDownloadOptions options, CancellationToken cancellationToken = default(CancellationToken))
+        private GridFSDownloadStream<TFileId> CreateDownloadStream(IReadBindingHandle binding, 
+            GridFSFileInfo<TFileId> fileInfo, GridFSDownloadOptions options, 
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             var checkMD5 = options.CheckMD5 ?? false;
             var seekable = options.Seekable ?? false;
@@ -625,7 +627,7 @@ namespace MongoDB.Driver.GridFS
             await operation.ExecuteAsync(binding, cancellationToken).ConfigureAwait(false);
         }
 
-        private FindOperation<GridFSFileInfo<TFileId>> CreateFindOperation(FilterDefinition<GridFSFileInfo<TFileId>> filter, GridFSFindOptions<TFileId> options)
+        private FindOperation<GridFSFileInfo<TFileId>> CreateFindOperation(IFilterDefinition<GridFSFileInfo<TFileId>> filter, GridFSFindOptions<TFileId> options)
         {
             var filesCollectionNamespace = this.GetFilesCollectionNamespace();
             var messageEncoderSettings = this.GetMessageEncoderSettings();

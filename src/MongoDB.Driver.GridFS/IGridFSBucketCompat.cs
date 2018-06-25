@@ -34,7 +34,7 @@ namespace MongoDB.Driver.GridFS
         /// <param name="options">The options.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A cursor of files collection documents.</returns>
-        IAsyncCursor<GridFSFileInfo> Find(FilterDefinition<GridFSFileInfo> filter, GridFSFindOptions options = null, CancellationToken cancellationToken = default(CancellationToken));
+        IAsyncCursor<GridFSFileInfo> Find(IFilterDefinition<GridFSFileInfo> filter, GridFSFindOptions options = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Finds matching entries from the files collection.
@@ -43,7 +43,7 @@ namespace MongoDB.Driver.GridFS
         /// <param name="options">The options.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A Task whose result is a cursor of files collection documents.</returns>
-        Task<IAsyncCursor<GridFSFileInfo>> FindAsync(FilterDefinition<GridFSFileInfo> filter, GridFSFindOptions options = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IAsyncCursor<GridFSFileInfo>> FindAsync(IFilterDefinition<GridFSFileInfo> filter, GridFSFindOptions options = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Opens a Stream that can be used by the application to write data to a GridFS file.

@@ -154,7 +154,7 @@ namespace MongoDB.Driver.GridFS
         /// <param name="options">The options.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A cursor of files collection documents.</returns>
-        IAsyncCursor<GridFSFileInfo<TFileId>> Find(FilterDefinition<GridFSFileInfo<TFileId>> filter, GridFSFindOptions<TFileId> options = null, CancellationToken cancellationToken = default(CancellationToken));
+        IAsyncCursor<GridFSFileInfo<TFileId>> Find(IFilterDefinition<GridFSFileInfo<TFileId>> filter, GridFSFindOptions<TFileId> options = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Finds matching entries from the files collection.
@@ -163,7 +163,7 @@ namespace MongoDB.Driver.GridFS
         /// <param name="options">The options.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A Task whose result is a cursor of files collection documents.</returns>
-        Task<IAsyncCursor<GridFSFileInfo<TFileId>>> FindAsync(FilterDefinition<GridFSFileInfo<TFileId>> filter, GridFSFindOptions<TFileId> options = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IAsyncCursor<GridFSFileInfo<TFileId>>> FindAsync(IFilterDefinition<GridFSFileInfo<TFileId>> filter, GridFSFindOptions<TFileId> options = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Opens a Stream that can be used by the application to read data from a GridFS file.

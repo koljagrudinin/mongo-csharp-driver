@@ -114,6 +114,7 @@
     <Compile Include="FieldValueSerializerHelper.cs" />
     <Compile Include="FilteredMongoCollectionBase.cs" />
     <Compile Include="IClientSession.cs" />
+    <Compile Include="IFilterDefinition.cs" />
     <Compile Include="IMongoClientExtensions.cs" />
     <Compile Include="IMongoDatabaseExtensions.cs" />
     <Compile Include="IndexKeysDefinition.cs" />

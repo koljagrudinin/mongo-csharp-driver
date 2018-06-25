@@ -117,7 +117,7 @@ namespace MongoDB.Driver.GridFS
         }
 
         /// <inheritdoc />
-        public IAsyncCursor<GridFSFileInfo> Find(FilterDefinition<GridFSFileInfo> filter, GridFSFindOptions options = null, CancellationToken cancellationToken = default(CancellationToken))
+        public IAsyncCursor<GridFSFileInfo> Find(IFilterDefinition<GridFSFileInfo> filter, GridFSFindOptions options = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             Ensure.IsNotNull(filter, nameof(filter));
             var wrappedFilter = WrapFilter(filter);
@@ -127,7 +127,7 @@ namespace MongoDB.Driver.GridFS
         }
 
         /// <inheritdoc />
-        public async Task<IAsyncCursor<GridFSFileInfo>> FindAsync(FilterDefinition<GridFSFileInfo> filter, GridFSFindOptions options = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IAsyncCursor<GridFSFileInfo>> FindAsync(IFilterDefinition<GridFSFileInfo> filter, GridFSFindOptions options = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             Ensure.IsNotNull(filter, nameof(filter));
             var wrappedFilter = WrapFilter(filter);
@@ -239,7 +239,7 @@ namespace MongoDB.Driver.GridFS
             return fileInfos.Select(fi => new GridFSFileInfo(fi.BackingDocument));
         }
 
-        private FilterDefinition<GridFSFileInfo<ObjectId>> WrapFilter(FilterDefinition<GridFSFileInfo> filter)
+        private FilterDefinition<GridFSFileInfo<ObjectId>> WrapFilter(IFilterDefinition<GridFSFileInfo> filter)
         {
             var renderedFilter = filter.Render(GridFSFileInfoSerializer.Instance, BsonSerializer.SerializerRegistry);
             return new BsonDocumentFilterDefinition<GridFSFileInfo<ObjectId>>(renderedFilter);

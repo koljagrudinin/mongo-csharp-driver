@@ -18,9 +18,6 @@ using System.Linq.Expressions;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver.Core.Misc;
-using MongoDB.Driver.Linq;
-using MongoDB.Driver.Linq.Expressions;
-using MongoDB.Driver.Linq.Processors;
 using MongoDB.Driver.Linq.Translators;
 
 namespace MongoDB.Driver
@@ -29,7 +26,7 @@ namespace MongoDB.Driver
     /// Base class for filters.
     /// </summary>
     /// <typeparam name="TDocument">The type of the document.</typeparam>
-    public abstract class FilterDefinition<TDocument>
+    public abstract class FilterDefinition<TDocument> : IFilterDefinition<TDocument>
     {
         private static readonly FilterDefinition<TDocument> __empty = new EmptyFilterDefinition<TDocument>();
 
